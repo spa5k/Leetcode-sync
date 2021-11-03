@@ -3,15 +3,23 @@ class Solution:
 
         for row in matrix:
             l = 0
-            r = len(row) - 1
-            if row[r] >= target and row[l] <= target:
+            r = len(row)-1
 
+            if row[l] <= target <= row[r]:
                 while l <= r:
-                    m = (l + r) // 2
+                    # it means that the value is inside
+                    middle = (l+r)//2
 
-                    if row[m] == target:
+                    if target == row[middle]:
                         return True
-                    if row[m] < target:
-                        l = m + 1
+
+                    if target < row[middle]:
+                        r = middle-1
                     else:
-                        r = m - 1
+                        l = middle+1
+
+    # def binarySearch(nums, target):
+    #     left = 0
+    #     right = len(nums)-1
+
+    #     while left <= right:
