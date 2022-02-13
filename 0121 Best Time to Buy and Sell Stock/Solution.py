@@ -8,10 +8,11 @@ class Solution:
             current_profit = prices[right]-prices[left]
 
             if prices[right] < prices[left]:
-                left =right
+                left = right
                 right += 1
                 continue
 
             max_profit = max(current_profit, max_profit)
             right += 1
         return max_profit
+        
