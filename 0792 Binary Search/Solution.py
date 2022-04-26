@@ -1,17 +1,19 @@
+from typing import List
+
+
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        low = 0
-        high = len(nums)-1
+        l = 0
+        r = len(nums) - 1
 
-        while low <= high:
-            middle = int(low + (high - low)/2)
-            middle_element = nums[middle]
-
-            if middle_element == target:
-                return middle
-
-            if middle_element < target:
-                low = middle+1
-            else:
-                high = middle-1
+        while l <= r:
+            m = l + ((r - l) // 2)
+            if nums[m] == target:
+                return m
+            if nums[m] > target:
+                r = m - 1
+                continue
+            if nums[m] < target:
+                l = m + 1
         return -1
+
