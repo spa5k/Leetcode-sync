@@ -1,0 +1,18 @@
+name: YALCST
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */12 * * *"
+
+jobs:
+  Sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Sync
+      uses: m4tu4g/YALCST@main
+      with:
+        github-token: ${{ github.token }}
+        leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
+        leetcode-session: ${{ secrets.LEETCODE_SESSION }}
