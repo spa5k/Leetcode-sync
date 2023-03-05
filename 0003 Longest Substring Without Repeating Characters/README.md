@@ -1,7 +1,7 @@
 
 <h1>Longest Substring Without Repeating Characters</h1>
 <h2>Medium</h2>
-<p>Given a string <code>s</code>, find the length of the <strong>longest substring</strong> without repeating characters.</p>
+<p>Given a string <code>s</code>, find the length of the <strong>longest</strong> <span data-keyword="substring-nonempty"><strong>substring</strong></span> without repeating characters.</p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
