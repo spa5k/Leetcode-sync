@@ -3,17 +3,19 @@ class Solution
 public:
   bool containsNearbyDuplicate(vector<int> &nums, int k)
   {
-    unordered_map<int, int> m;
-    for (int i = 0; i < nums.size(); i++)
+    unordered_map<int, int> map;
+    int i = 0, j = 0;
+    for (; j < nums.size(); j++)
     {
-      if (m[nums[i]] != 0 && i - m[nums[i]] < k)
+      if (j > k)
+      {
+        map[nums[i++]]--;
+      }
+      if (map[nums[j]] > 0)
       {
         return true;
       }
-      else
-      {
-        m[nums[i]] = i + 1;
-      }
+      map[nums[j]]++;
     }
     return false;
   }
