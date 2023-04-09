@@ -2,23 +2,24 @@
  * @param {string} s
  * @return {boolean}
  */
-const isValid = s => {
-  const pairs = {
-    '(': ')',
-    '{': '}',
-    '[': ']',
-  };
-
-  let stack = [];
-
-  for (let i = 0; i < s.length; i++) {
-    if (pairs[s[i]]) {
-      stack.push(s[i]);
+var isValid = function (s) {
+  const stack = [];
+  for (const i of s) {
+    if (i == "(" || i == "[" || i == "{") {
+      stack.push(i);
+    } else if (
+      (i === ")" && stack.length > 0 && stack[stack.length - 1] === "(") ||
+      (i === "}" && stack.length > 0 && stack[stack.length - 1] === "{") ||
+      (i === "]" && stack.length > 0 && stack[stack.length - 1] === "[")
+    ) {
+      stack.pop();
     } else {
-      let popValue = stack.pop();
-      if (pairs[popValue] !== s[i]) return false;
+      return false;
     }
   }
 
-  return stack.length === 0;
+  if (stack.length === 0) {
+    return true;
+  }
+  return false;
 };
