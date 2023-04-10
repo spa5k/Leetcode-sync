@@ -3,9 +3,21 @@
  * @param {number} target
  * @return {number}
  */
-const searchInsert = (nums, target) => {
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] >= target) return i;
+var searchInsert = function (nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    let midn = nums[mid];
+
+    if (midn === target) {
+      return mid;
+    }
+    if (midn < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
   }
-  return nums.length;
+  return left;
 };
