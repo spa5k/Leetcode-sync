@@ -2,12 +2,16 @@
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-const moveZeroes = nums=> {
-    for (var i=nums.length - 1; i>=0;i--) {
-        if(nums[i]===0 ) {
-            nums.splice(i,1)
-            nums.push(0);
-        }
+var moveZeroes = function (nums) {
+  let i = 0;
+  for (const n of nums) {
+    if (n !== 0) {
+      nums[i] = n;
+      i++;
     }
-    return nums;
+  }
+  for (let j = i; j < nums.length; j++) {
+    nums[j] = 0;
+  }
+  return nums;
 };
