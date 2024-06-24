@@ -1,31 +1,34 @@
-/**
- * @param {number[]} arr1
- * @param {number[]} arr2
- * @return {number[]}
- */
 var relativeSortArray = function(arr1, arr2) {
-    const result = new Array();
-    const temp = new Set();
-    const extra=[];
-    for (let i =0; i<arr2.length; i++) {
-        const elem = arr2[i];
-        
-        if (arr1.includes(elem)) {
-            for (let num of arr1) {
-                if (num===elem) {
-                    result.push(num)
-                    temp.add(num)
-                }
+    const frequencyMap = new Map();
+    const result = [];
+
+    // Create a frequency map for arr1
+    for (let num of arr1) {
+        frequencyMap.set(num, (frequencyMap.get(num) || 0) + 1);
+    }
+
+    // Add elements from arr2 in the order they appear
+    for (let num of arr2) {
+        if (frequencyMap.has(num)) {
+            const count = frequencyMap.get(num);
+            for (let i = 0; i < count; i++) {
+                result.push(num);
             }
+            frequencyMap.delete(num);
         }
     }
-    for (let num of arr1) {
-                if (!temp.has(num)) {
-                    extra.push(num)
-                }
+
+    // Collect remaining elements from arr1 that are not in arr2
+    const extra = [];
+    for (let [num, count] of frequencyMap) {
+        for (let i = 0; i < count; i++) {
+            extra.push(num);
+        }
     }
-    extra.sort((a,b)=>a-b)
-    
-    result.push(...extra)
-    return result
+
+    // Sort the remaining elements and add to the result
+    extra.sort((a, b) => a - b);
+    result.push(...extra);
+
+    return result;
 };
