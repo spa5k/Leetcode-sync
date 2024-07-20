@@ -1,14 +1,13 @@
-name: Sync Leetcode Daily
+name: Sync Leetcode
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *" # Run the workflow daily at midnight
+    - cron: "0 0 * * *"
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 2
 
     steps:
       - name: Sync
@@ -17,3 +16,4 @@ jobs:
           github-token: ${{ github.token }}
           leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
           leetcode-session: ${{ secrets.LEETCODE_SESSION }}
+          verbose: true
